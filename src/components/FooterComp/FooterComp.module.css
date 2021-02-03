@@ -2,4 +2,21 @@
   height: 40px;
   background: rgba(0, 0, 0, 0.66);
   border-radius: 0 0 20px 20px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.Input {
+  border: none;
+  background: none;
+  width: 260px;
+  color: white;
+}
+
+.Input::placeholder {
+  
+}
+
+.Emoji {
+  cursor: pointer;
 }
