@@ -1,0 +1,100 @@
+.Header {
+  height: 40px;
+  background: rgba(0, 0, 0, 0.66);
+  border-radius: 20px 20px 0 0;
+  text-transform: uppercase;
+  padding: 0 0 0 15px;
+  box-sizing: border-box;
+}
+
+.Header__Item {
+  margin-right: 10px;
+}
+
+.Menu {
+  position: relative;
+  white-space: nowrap; 
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 243px;
+}
+
+.Menu__Item {
+  margin-right: 15px;
+  color: #23B838;
+  box-sizing: border-box;
+  user-select: none;
+  cursor: pointer;
+}
+
+.Menu__Item_Last {
+  margin-right: 0px;
+  background: linear-gradient(to right, #23B838 0%, rgba(0, 186, 187, 0) 70%);
+  background-clip: text;
+  color: transparent;
+}
+
+.Menu__Item_Last_Active {
+  position: relative;
+  margin-right: 0px;
+  background: linear-gradient(to right, #FFF 0%, rgba(0, 186, 187, 0) 70%);
+  background-clip: text;
+  color: transparent;
+}
+
+.Menu__Item_Last_Active::after {
+  display: block;
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #23B838;
+}
+
+.Menu__Item_Active {
+  position: relative;
+  color: #FFF;
+}
+
+.Menu__Item_Active::after {
+  display: block;
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: #23B838;
+}
+
+.RightArrow {
+  position: absolute;
+  right: 112px;
+}
+
+.Lang {
+  
+}
+
+.Lang__Select {
+  width: 40px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  border: none;
+  background: url('../../assets/images/arrows/down.svg') no-repeat right;
+  color: #FFF;
+}
+
+.Lang__Option {
+  color:#23B838;
+}
+
+.ResizeButt {
+  cursor: pointer;
+}
+
+.CloseButt {
+  cursor: pointer;
+}

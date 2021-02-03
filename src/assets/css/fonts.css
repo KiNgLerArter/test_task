@@ -3,26 +3,26 @@
   src: url("../fonts/Rubik/Rubik-Regular.ttf") format('truetype');
 }
 
-.FontsRubikRegular_13_15 {
+body {
   font-family: "Rubik";
+}
+
+.Fonts_13_15 {
   font-size: 13px;
   line-height: 15px;
 }
 
-.FontsRubikRegular_13_14 {
-  font-family: "Rubik";
+.Fonts_13_14 {
   font-size: 13px;
   line-height: 14px;
 }
 
-.FontsRubikRegular_13_16 {
-  font-family: "Rubik";
+.Fonts_13_16 {
   font-size: 13px;
   line-height: 16px;
 }
 
-.FontsRubikRegular_12_12 {
-  font-family: "Rubik";
+.Fonts_12_12 {
   font-size: 12px;
   line-height: 12px;
 }

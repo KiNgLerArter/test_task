@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import './assets/css/fonts.css';
 import './assets/css/reset.css';
+import './assets/css/case.css';
 
 ReactDOM.render(
   <React.StrictMode>

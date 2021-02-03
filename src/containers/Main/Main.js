@@ -6,7 +6,9 @@ class Main extends Component {
   render() {
 
     return (
-      <main>
+      <main
+        className={classes.Main + ' width_100'}
+      >
 
       </main>
     )
