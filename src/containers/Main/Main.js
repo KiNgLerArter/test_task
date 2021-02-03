@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 
-import classes from './Main.module.css';
+import MainComp from '../../components/MainComp/MainComp';
 
 class Main extends Component {
+  mainCompRef = React.createRef();
+
+  componentDidMount = () => {
+    this.mainCompRef.current.scrollIntoView({block: "center", behavior: "smooth"});
+  }
+
+  componentDidUpdate = () => {
+    this.mainCompRef.current.scrollIntoView({block: "center", behavior: "smooth"});
+  }
+
   render() {
 
     return (
-      <main
-        className={classes.Main + ' width_100'}
-      >
-
-      </main>
+      <MainComp 
+        ref={this.mainCompRef}
+      />
     )
   }
 }

@@ -1,0 +1,26 @@
+.MessageComp {
+  max-width: 80%;
+  margin-bottom: 8px;
+}
+
+.Message {
+  background: #FFFFFF;
+  border-radius: 20px 20px 20px 0px;
+  padding: 12px;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+.Date {
+  color: #FFF;
+  opacity: 40%;
+}
+
+.Message__NickName {
+  color: #999999;
+  margin-bottom: 6px;
+}
+
+.Message__Text {
+  white-space: normal;
+}

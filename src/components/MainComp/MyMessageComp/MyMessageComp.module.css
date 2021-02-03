@@ -1,0 +1,25 @@
+.Wrapper {
+  
+}
+
+.MyMessageComp {
+  max-width: 80%;
+  margin-bottom: 8px;
+}
+
+.Message {
+  background: #212121;
+  border-radius: 20px 20px 0 20px;
+  padding: 12px;
+  box-sizing: border-box;
+  margin-left: 10px;
+}
+
+.Date {
+  color: #FFF;
+  opacity: 40%;
+}
+
+.Message__Text {
+  color: #FFF;
+}
