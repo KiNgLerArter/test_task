@@ -1,10 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+import Main from './containers/Main/Main';
+
+import classes from './App.module.css';
+
+const App = () => {
   return (
     <div className="App">
+      <header>
 
+      </header>
+      <Main/>
+      <footer>
+
+      </footer>
     </div>
   );
 }
