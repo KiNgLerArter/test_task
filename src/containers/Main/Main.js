@@ -51,8 +51,8 @@ class Main extends Component {
       },
       {
         text: 'Сегодня идем на Германию', 
-        createdAt: '22:21',
-        createdAtReal: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 22, 21, 0, 0),
+        createdAt: '10:21',
+        createdAtReal: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 10, 21, 0, 0),
         id: 'artificialMes5',
         myMessage: true,
         lvl: Math.floor(Math.random() * 10 + 1)
@@ -62,6 +62,13 @@ class Main extends Component {
 
   refScrollBottom = React.createRef();
   refScrollTop = React.createRef();
+
+  uuidv4 = () => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
 
   componentDidMount = () => {
 
@@ -75,7 +82,7 @@ class Main extends Component {
         text: data.text,
         createdAt: hours + ':' + minutes,
         createdAtReal: msDate,
-        id: data.id,
+        id: this.uuidv4(),
         myMessage: false,
         lvl: Math.floor(Math.random() * 10 + 1)
       }
@@ -109,6 +116,7 @@ class Main extends Component {
                   element.createdAt = hours + ':' + minutes;
                   element.createdAtReal = msDate;
                   element.lvl = Math.floor(Math.random() * 10 + 1);
+                  element.id = this.uuidv4();
                 });
 
                 this.setState((prevState) => {
