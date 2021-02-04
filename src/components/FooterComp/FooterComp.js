@@ -11,6 +11,8 @@ const footerComp = (props) => (
       className={classes.Input + ' Fonts_13_16'}
       placeholder={'Напишите сообщение...'}
       maxLength={200}
+      minLength={1}
+      onKeyUp={(e) => e.key === 'Enter' ? props.pushUrMessage(e) : null}
     />
     <img 
       src={emojiImg}

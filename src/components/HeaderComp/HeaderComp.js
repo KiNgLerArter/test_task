@@ -88,6 +88,7 @@ const headerComp = (props) => (
         className={classes.CloseButt__Img}
         src={closeBut}
         alt='close'
+        onClick={props.closeChat}
       />
     </section>
   </header>

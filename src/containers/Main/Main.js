@@ -4,7 +4,11 @@ import MainComp from '../../components/MainComp/MainComp';
 import socket from '../../https/socket';
 
 class Main extends Component {
+  refScrollBottom = React.createRef();
+  refScrollTop = React.createRef();
+
   state = {
+    scrollHeight: this.refScrollTop.current ? this.refScrollTop.current.scrollHeight : 0,
     skipCoeff: 0,
     history: [
       {
@@ -60,8 +64,26 @@ class Main extends Component {
     ]
   }
 
-  refScrollBottom = React.createRef();
-  refScrollTop = React.createRef();
+  pushMyMessage = () => {
+    const messageDate = new Date();
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        history: [
+          ...prevState.history,
+          {
+            text: this.props.postMessage, 
+            createdAt: messageDate.getHours() + ':' + messageDate.getMinutes(),
+            createdAtReal: messageDate,
+            id: this.uuidv4(),
+            myMessage: true,
+            lvl: Math.floor(Math.random() * 10 + 1)
+          }
+        ]
+      }
+    });
+    this.props.pushedMessage();
+  }
 
   uuidv4 = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -97,49 +119,62 @@ class Main extends Component {
       })
     });
 
-    if (this.props.all && (this.props.lang === 'RU')) {
-      this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
-
-      this.refScrollTop.current.addEventListener("scroll", () => {
+    if (this.props.opened) {
+      if (this.props.all && this.props.lang === 'RU') {
+        this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
+  
+        this.refScrollTop.current.addEventListener("scroll", () => {
           if (this.refScrollTop.current) {
             if (this.refScrollTop.current.scrollTop === 0) {
-            let limit = 10;
-            let skip = this.state.skipCoeff * limit;
-            fetch('https://test-task-chat-4tmzp.ondigitalocean.app/api/messages?skip=' + skip + '&limit=' + limit)
-              .then((response) => response.json())
-              .then((result) => {
-                let msDate, hours, minutes;
-                result.forEach(element => {
-                  msDate = new Date(Date.parse(element.createdAt));
-                  hours = msDate.getHours();
-                  minutes = msDate.getMinutes() < 10 ? '0' + msDate.getMinutes() : msDate.getMinutes();
-                  element.createdAt = hours + ':' + minutes;
-                  element.createdAtReal = msDate;
-                  element.lvl = Math.floor(Math.random() * 10 + 1);
-                  element.id = this.uuidv4();
+              let limit = 10;
+              let skip = this.state.skipCoeff * limit;
+              fetch('https://test-task-chat-4tmzp.ondigitalocean.app/api/messages?skip=' + skip + '&limit=' + limit)
+                .then((response) => response.json())
+                .then((result) => {
+                  let msDate, hours, minutes;
+                  result.forEach(element => {
+                    msDate = new Date(Date.parse(element.createdAt));
+                    hours = msDate.getHours();
+                    minutes = msDate.getMinutes() < 10 ? '0' + msDate.getMinutes() : msDate.getMinutes();
+                    element.createdAt = hours + ':' + minutes;
+                    element.createdAtReal = msDate;
+                    element.lvl = Math.floor(Math.random() * 10 + 1);
+                    element.id = this.uuidv4();
+                  });
+  
+                  this.setState((prevState) => {
+                    return {
+                      ...prevState,
+                      skipCoeff: prevState.skipCoeff + 1,
+                      history: [
+                        ...result,
+                        ...prevState.history
+                      ]
+                    }
+                  })
                 });
 
-                this.setState((prevState) => {
-                  return {
-                    ...prevState,
-                    skipCoeff: prevState.skipCoeff + 1,
-                    history: [
-                      ...result,
-                      ...prevState.history
-                    ]
-                  }
-                })
+              this.refScrollTop.current.scrollTop = this.refScrollTop.current.scrollHeight - this.state.scrollHeight - Number(window.getComputedStyle(this.refScrollTop.current).height.replace('px',''));
+              this.setState((prevState) => {
+                return {
+                  ...prevState,
+                  scrollHeight: this.refScrollTop.current.scrollHeight
+                }
               })
+            }
           }
-        }
-      })
+        })
+      }
     }
 
   }
 
-  componentDidUpdate = () => {
-    if (this.refScrollBottom.current) {
-      this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
+    // if (this.refScrollBottom.current) {
+    //   this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
+    // }
+    if (this.props.postMessage) {
+      this.pushMyMessage();
     }
   }
 

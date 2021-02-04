@@ -5,7 +5,9 @@ import FooterComp from '../../components/FooterComp/FooterComp';
 class Footer extends Component {
   render () {
     return (
-      <FooterComp />
+      <FooterComp 
+        pushUrMessage={this.props.pushUrMessage}
+      />
     )
   }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 import classes from './MainComp.module.css';
 
@@ -52,23 +52,26 @@ const mainComp = React.forwardRef((props, ref) => {
   })
 
   return (
-    props.all === true && props.lang === 'RU' ?
-      <main
-        className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
-        ref={refScrollTop}
-      >
-        {historyOutMas}
-        
-        <div
-          ref={refScrollBottom}
-        >
-
-        </div>
-      </main>
+    !props.opened ?
+      <Fragment/>
     :
-      <main
-        className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
-      ></main>
+      props.all === true && props.lang === 'RU' ?
+        <main
+          className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
+          ref={refScrollTop}
+        >
+          {historyOutMas}
+
+          <div
+            ref={refScrollBottom}
+          >
+
+          </div>
+        </main>
+      :
+        <main
+          className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
+        ></main>
   )
 });
 

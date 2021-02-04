@@ -4,16 +4,10 @@ import HeaderComp from '../../components/HeaderComp/HeaderComp';
 
 class Header extends Component {
   
-
   render () {
     return (
       <HeaderComp
-        all={this.props.all}
-        clan={this.props.clan}
-        friends={this.props.friends}
-        news={this.props.news}
-        changeActive={this.props.changeActive}
-        changeLang={this.props.changeLang}
+        {...this.props}
       />
     )
   }
