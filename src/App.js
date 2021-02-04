@@ -9,7 +9,7 @@ import classes from './App.module.css';
 class App extends Component {
 
   state = {
-    lang: 'ru',
+    lang: 'RU',
     all: true,
     clan: false,
     friends: false,
@@ -28,7 +28,8 @@ class App extends Component {
     })
   }
 
-  onChangeLangHandler = (lang) => {
+  onChangeLangHandler = (e) => {
+    let lang = e.target.value;
     this.setState((prevState) => {
       return {
         ...prevState,
@@ -46,13 +47,14 @@ class App extends Component {
           friends={this.state.friends}
           news={this.state.news}
           changeActive={(type) => this.onChangeActiveHandler(type)}
-          changeLang={(lang) => this.onChangeLangHandler(lang)}
+          changeLang={(e) => this.onChangeLangHandler(e)}
         />
         <Main 
           all={this.state.all}
           clan={this.state.clan}
           friends={this.state.friends}
           news={this.state.news}
+          lang={this.state.lang}
         />
         <Footer />
       </div>

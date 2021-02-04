@@ -44,21 +44,21 @@ const mainComp = React.forwardRef((props, ref) => {
           message={item.text}
           date={item.createdAt}
           icon={item.icon}
-          badge={item.badge}         
+          badge={item.badge}   
+          lvl={item.lvl}      
         />
       )
     }
   })
 
   return (
-    props.all ?
+    props.all === true && props.lang === 'RU' ?
       <main
         className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
         ref={refScrollTop}
       >
         {historyOutMas}
         
-        {/* {messagesOutMas} */}
         <div
           ref={refScrollBottom}
         >

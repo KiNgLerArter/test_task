@@ -15,6 +15,7 @@ class Main extends Component {
         id: 'artificialMes1',
         icon: 'sun',
         myMessage: false,
+        lvl: Math.floor(Math.random() * 10 + 1)
       },
       {
         from: 'BivOld',
@@ -24,6 +25,7 @@ class Main extends Component {
         id: 'artificialMes2',
         icon: 'btc',
         myMessage: false,
+        lvl: Math.floor(Math.random() * 10 + 1)
       },
       {
         from: 'Nigativ',
@@ -34,6 +36,7 @@ class Main extends Component {
         badge: 'moderator',
         icon: 'sun',
         myMessage: false,
+        lvl: Math.floor(Math.random() * 10 + 1)
       },
       {
         from: 'Skylifesky',
@@ -44,6 +47,7 @@ class Main extends Component {
         badge: 'admin',
         icon: 'btc',
         myMessage: false,
+        lvl: Math.floor(Math.random() * 10 + 1)
       },
       {
         text: 'Сегодня идем на Германию', 
@@ -51,6 +55,7 @@ class Main extends Component {
         createdAtReal: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 22, 21, 0, 0),
         id: 'artificialMes5',
         myMessage: true,
+        lvl: Math.floor(Math.random() * 10 + 1)
       }
     ]
   }
@@ -71,7 +76,8 @@ class Main extends Component {
         createdAt: hours + ':' + minutes,
         createdAtReal: msDate,
         id: data.id,
-        myMessage: false
+        myMessage: false,
+        lvl: Math.floor(Math.random() * 10 + 1)
       }
       this.setState((prevState) => {
         return {
@@ -84,11 +90,11 @@ class Main extends Component {
       })
     });
 
-    if (this.props.all) {
+    if (this.props.all && (this.props.lang === 'RU')) {
       this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
 
       this.refScrollTop.current.addEventListener("scroll", () => {
-          if (this.refScrollTop) {
+          if (this.refScrollTop.current) {
             if (this.refScrollTop.current.scrollTop === 0) {
             let limit = 10;
             let skip = this.state.skipCoeff * limit;
@@ -102,6 +108,7 @@ class Main extends Component {
                   minutes = msDate.getMinutes() < 10 ? '0' + msDate.getMinutes() : msDate.getMinutes();
                   element.createdAt = hours + ':' + minutes;
                   element.createdAtReal = msDate;
+                  element.lvl = Math.floor(Math.random() * 10 + 1);
                 });
 
                 this.setState((prevState) => {
@@ -123,7 +130,9 @@ class Main extends Component {
   }
 
   componentDidUpdate = () => {
-    this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
+    if (this.refScrollBottom.current) {
+      this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
+    }
   }
 
   render() {

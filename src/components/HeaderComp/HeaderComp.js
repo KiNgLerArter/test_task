@@ -50,6 +50,7 @@ const headerComp = (props) => (
     >
       <select
         className={classes.Lang__Select}
+        onChange={(e) => props.changeLang(e)}
       >
         <option 
           value="RU"

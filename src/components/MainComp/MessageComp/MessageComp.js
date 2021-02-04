@@ -38,7 +38,7 @@ const messageComp = (props) => (
         <p
           className={classes.Message__Lvl}
         >
-          {Math.floor(Math.random() * 10 + 1)}
+          {props.lvl}
         </p>
       </header>
       <main

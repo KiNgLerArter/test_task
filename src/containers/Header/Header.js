@@ -13,6 +13,7 @@ class Header extends Component {
         friends={this.props.friends}
         news={this.props.news}
         changeActive={this.props.changeActive}
+        changeLang={this.props.changeLang}
       />
     )
   }
