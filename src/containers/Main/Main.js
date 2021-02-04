@@ -6,11 +6,11 @@ class Main extends Component {
   mainCompRef = React.createRef();
 
   componentDidMount = () => {
-    this.mainCompRef.current.scrollIntoView({block: "center", behavior: "smooth"});
+    if (this.props.all) this.mainCompRef.current.scrollIntoView({block: "center", behavior: "smooth"});
   }
 
   componentDidUpdate = () => {
-    this.mainCompRef.current.scrollIntoView({block: "center", behavior: "smooth"});
+    if (this.props.all) this.mainCompRef.current.scrollIntoView({block: "center", behavior: "smooth"});
   }
 
   render() {
@@ -18,6 +18,7 @@ class Main extends Component {
     return (
       <MainComp 
         ref={this.mainCompRef}
+        {...this.props}
       />
     )
   }

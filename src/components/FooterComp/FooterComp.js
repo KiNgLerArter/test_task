@@ -15,6 +15,7 @@ const footerComp = (props) => (
     <img 
       src={emojiImg}
       className={classes.Emoji}
+      alt='emoji'
     />
   </footer>
 );

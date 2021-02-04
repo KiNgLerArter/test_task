@@ -4,7 +4,7 @@
 }
 
 .Message {
-  background: #FFFFFF;
+  background: #FFF;
   border-radius: 20px 20px 20px 0px;
   padding: 12px;
   box-sizing: border-box;
@@ -21,6 +21,29 @@
   margin-bottom: 6px;
 }
 
-.Message__Text {
-  white-space: normal;
+.Message__Icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
 }
+
+.Message__Title {
+  margin-right: 4px;
+}
+
+.Message__Badge {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+
+.Message__Lvl {
+  color: #23B838;
+}
+
+.Message__Text {
+  /* white-space: pre; */
+  /* width: max-content; */
+}
+
+

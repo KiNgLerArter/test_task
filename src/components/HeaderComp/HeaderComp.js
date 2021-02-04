@@ -42,6 +42,7 @@ const headerComp = (props) => (
       <img
         className={classes.RightArrow__Img}
         src={rightArrow}
+        alt='scroll'
       />
     </section>
     <section
@@ -76,6 +77,7 @@ const headerComp = (props) => (
       <img
         className={classes.ResizeButt__Img}
         src={resizeBut}
+        alt='resize'
       />
     </section>
     <section
@@ -84,6 +86,7 @@ const headerComp = (props) => (
       <img
         className={classes.CloseButt__Img}
         src={closeBut}
+        alt='close'
       />
     </section>
   </header>
