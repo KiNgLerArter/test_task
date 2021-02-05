@@ -17,7 +17,12 @@
   white-space: nowrap; 
   overflow: hidden;
   box-sizing: border-box;
-  width: 243px;
+  color: #23B838;
+}
+
+.Menu_Full {
+  white-space: normal;
+  width: 248px;
 }
 
 .Options {
@@ -26,7 +31,6 @@
 
 .Menu__Item {
   margin-right: 15px;
-  color: #23B838;
   box-sizing: border-box;
   user-select: none;
   cursor: pointer;
@@ -47,22 +51,24 @@
   color: transparent;
 }
 
-.Menu__Item_Last_Active::after {
-  display: block;
-  position: absolute;
-  content: '';
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: #23B838;
-}
-
 .Menu__Item_Active {
   position: relative;
   color: #FFF;
 }
 
+.Menu__Item_Last_Full {
+  background: none;
+  background-clip: initial;
+  color: inherit;
+}
+
+.Menu__Item_Last_Full_Active {
+  background: none;
+  background-clip: initial;
+  color: #FFF
+}
+
+.Menu__Item_Last_Active::after,
 .Menu__Item_Active::after {
   display: block;
   position: absolute;

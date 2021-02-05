@@ -9,7 +9,7 @@ const headerComp = (props) => (
     className={classes.Header + ' width_100 Fonts_13_15 flex_between_center'}
   >
     <section
-      className={classes.Header__Item + ' ' + classes.Menu + ' height_100 flex_flex-start_center'}
+      className={classes.Header__Item + ' ' + classes.Menu + ' height_100 flex_flex-start_center ' + (props.isOpenedMenu ? classes.Menu_Full : null)}
     >
       <p
         className={classes.Menu__Item + ' height_100 flex_center ' + (props.all ? classes.Menu__Item_Active : '')}
@@ -30,16 +30,31 @@ const headerComp = (props) => (
         друзья
       </p>
       <p
-        className={classes.Menu__Item + ' ' + classes.Menu__Item_Last + ' height_100 flex_center ' + (props.news ? classes.Menu__Item_Last_Active : '')}
+        className={
+          classes.Menu__Item + ' ' + 
+          classes.Menu__Item_Last + ' height_100 flex_center ' + 
+          (props.news ? classes.Menu__Item_Last_Active : '') + ' ' +
+          (
+            props.isOpenedMenu ? 
+              (
+                props.news ?
+                  classes.Menu__Item_Last_Full_Active 
+                :
+                  classes.Menu__Item_Last_Full
+              )
+            : ''
+          )
+        }
         onClick={() => props.changeActive('news')}
       >
         новости
       </p>
     </section>
     <img
-      className={classes.RightArrow__Img}
+      className={classes.RightArrow__Img + (props.isOpenedMenu ? ' disp_none' : '')}
       src={rightArrow}
       alt='scroll'
+      onClick={props.showFullMenu}
     />
     <section
       className={classes.Options + ' flex_flex-end_center'}
