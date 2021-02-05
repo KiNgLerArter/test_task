@@ -10,7 +10,7 @@ class Main extends Component {
 
   state = {
     skipCoeff: 0,
-    limit: 10,
+    limit: 50,
     history: [
       {
         from: 'IDontKnow',
@@ -166,8 +166,8 @@ class Main extends Component {
     //   this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
     // }
     if (prevState.skipCoeff !== this.state.skipCoeff ) {
-      if (this.state.skipCoeff > 0) {
-        document.getElementById('lastHistoryElem').scrollIntoView({block: "center", behavior: "smooth"})
+      if (this.state.skipCoeff > 0 && document.getElementById('lastHistoryElem')) {
+        document.getElementById('lastHistoryElem').scrollIntoView({block: "center", behavior: "auto"})
       }
     }
 
