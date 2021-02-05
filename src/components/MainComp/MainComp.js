@@ -39,7 +39,7 @@ const mainComp = React.forwardRef((props, ref) => {
         </div>
       )
     }
-    if (item.myMessage) {
+    if (item.myMessage || item.from === props.nickName) {
       lastMyMessageCounter = index;
       historyOutMas.push(
         <MyMessageComp
