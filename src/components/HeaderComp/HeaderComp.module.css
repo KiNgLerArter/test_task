@@ -17,7 +17,11 @@
   white-space: nowrap; 
   overflow: hidden;
   box-sizing: border-box;
-  width: 67.5%;
+  width: 243px;
+}
+
+.Options {
+  padding: 0 10px 0 0;
 }
 
 .Menu__Item {
@@ -70,13 +74,10 @@
   background: #23B838;
 }
 
-.RightArrow {
+.RightArrow__Img {
   position: absolute;
   left: 236px;
-}
-
-.Lang {
-  
+  cursor: pointer;
 }
 
 .Lang__Select {
@@ -92,10 +93,12 @@
   color:#23B838;
 }
 
-.ResizeButt {
+.ResizeButt__Img {
   cursor: pointer;
+  margin-left: 10px;
 }
 
-.CloseButt {
+.CloseButt__Img {
   cursor: pointer;
+  margin-left: 10px;
 }

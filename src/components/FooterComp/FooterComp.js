@@ -8,7 +8,7 @@ const footerComp = (props) => (
   >
     <input 
       type='text'
-      className={classes.Input + ' Fonts_13_16'}
+      className={classes.Input + ' Fonts_13_16 width_80'}
       placeholder={'Напишите сообщение...'}
       maxLength={200}
       minLength={1}

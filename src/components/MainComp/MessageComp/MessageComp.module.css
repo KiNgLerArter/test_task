@@ -43,6 +43,7 @@
 }
 
 .Message__Text {
+  word-wrap: break-word;
   /* white-space: pre; */
   /* width: max-content; */
 }

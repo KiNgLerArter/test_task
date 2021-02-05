@@ -29,7 +29,7 @@ const mainComp = React.forwardRef((props, ref) => {
   let lastMyMessageCounter = null;
   const historyOutMas = [];
   historyInMas.forEach((item, index, arr) => {
-    if (index === props.limit && props.coeff > 0) {
+    if (index === (item.from === 'IDontKnow' ? props.limit - 4 : props.limit + 4) && props.coeff > 0) {
       historyOutMas.push(
         <div
           key={'lastHistoryElem'}
