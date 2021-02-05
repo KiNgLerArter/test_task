@@ -1,13 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 
 import FooterComp from '../../components/FooterComp/FooterComp';
 
 class Footer extends Component {
   render () {
     return (
-      <FooterComp 
-        pushUrMessage={this.props.pushUrMessage}
-      />
+      this.props.opened ? 
+        <FooterComp 
+          pushUrMessage={this.props.pushUrMessage}
+        />
+      :
+        <Fragment/>
     )
   }
 }

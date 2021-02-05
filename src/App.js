@@ -93,6 +93,7 @@ class App extends Component {
         />
         <Footer 
           pushUrMessage={(e) => this.onPushMessageHandler(e)}
+          opened={this.state.opened}
         />
       </div>
     );

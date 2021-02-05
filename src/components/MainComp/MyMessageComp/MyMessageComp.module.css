@@ -3,7 +3,6 @@
 }
 
 .MyMessageComp {
-  max-width: 80%;
   margin-bottom: 8px;
 }
 
@@ -13,6 +12,8 @@
   padding: 12px;
   box-sizing: border-box;
   margin-left: 10px;
+  width: max-content;
+  max-width: 224px;
 }
 
 .Date {

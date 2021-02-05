@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 import MainComp from '../../components/MainComp/MainComp';
 import socket from '../../https/socket';
@@ -10,6 +11,7 @@ class Main extends Component {
   state = {
     scrollHeight: this.refScrollTop.current ? this.refScrollTop.current.scrollHeight : 0,
     skipCoeff: 0,
+    limit: 10,
     history: [
       {
         from: 'IDontKnow',
@@ -95,7 +97,6 @@ class Main extends Component {
   componentDidMount = () => {
 
     socket.on('message', (data) => {
-      console.log(data)
       let msDate = new Date(Date.parse(data.createdAt));
       let hours = msDate.getHours()
       let minutes = msDate.getMinutes() < 10 ? '0' + msDate.getMinutes() : msDate.getMinutes();
@@ -126,7 +127,7 @@ class Main extends Component {
         this.refScrollTop.current.addEventListener("scroll", () => {
           if (this.refScrollTop.current) {
             if (this.refScrollTop.current.scrollTop === 0) {
-              let limit = 10;
+              let limit = this.state.limit;
               let skip = this.state.skipCoeff * limit;
               fetch('https://test-task-chat-4tmzp.ondigitalocean.app/api/messages?skip=' + skip + '&limit=' + limit)
                 .then((response) => response.json())
@@ -154,13 +155,8 @@ class Main extends Component {
                   })
                 });
 
-              this.refScrollTop.current.scrollTop = this.refScrollTop.current.scrollHeight - this.state.scrollHeight - Number(window.getComputedStyle(this.refScrollTop.current).height.replace('px',''));
-              this.setState((prevState) => {
-                return {
-                  ...prevState,
-                  scrollHeight: this.refScrollTop.current.scrollHeight
-                }
-              })
+              // this.refScrollTop.current.scrollTop = this.refScrollTop.current.scrollHeight - this.state.scrollHeight - Number(window.getComputedStyle(this.refScrollTop.current).height.replace('px','')*1.5);
+
             }
           }
         })
@@ -173,6 +169,19 @@ class Main extends Component {
     // if (this.refScrollBottom.current) {
     //   this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
     // }
+    if (prevState.skipCoeff !== this.state.skipCoeff ) {
+      if (this.state.skipCoeff > 0) {
+        console.log(new Date().getMinutes() + ':' + new Date().getSeconds() + ' [Main.js]:' + 'lastHistoryElem')
+        document.getElementById('lastHistoryElem').scrollIntoView({block: "center", behavior: "smooth"})
+      }
+    }
+
+    if (prevProps.postMessage && this.props.postMessage === false) {
+      if (document.getElementById('lastMyMessage')) {
+        document.getElementById('lastMyMessage').scrollIntoView({block: "center", behavior: "smooth"});
+      }
+    }
+
     if (this.props.postMessage) {
       this.pushMyMessage();
     }
@@ -187,8 +196,9 @@ class Main extends Component {
           refScrollTop: this.refScrollTop
         }}
         {...this.props}
-        messages={this.state.messages}
+        coeff={this.state.skipCoeff}
         history={this.state.history}
+        limit={this.state.limit}
       />
     )
   }

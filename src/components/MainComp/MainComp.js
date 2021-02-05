@@ -26,9 +26,22 @@ const mainComp = React.forwardRef((props, ref) => {
 
   historyInMas.sort((a, b) => a.createdAtReal > b.createdAtReal ? 1 : -1);
 
+  let lastMyMessageCounter = null;
   const historyOutMas = [];
   historyInMas.forEach((item, index, arr) => {
+    if (index === props.limit && props.coeff > 0) {
+      console.log(new Date().getMinutes() + ':' + new Date().getSeconds() + ' [MainComp.js]:' + 'lastHistoryElem')
+      historyOutMas.push(
+        <div
+          key={'lastHistoryElem'}
+          id={'lastHistoryElem'}
+        >
+
+        </div>
+      )
+    }
     if (item.myMessage) {
+      lastMyMessageCounter = index;
       historyOutMas.push(
         <MyMessageComp
           key={item.id}
@@ -50,6 +63,17 @@ const mainComp = React.forwardRef((props, ref) => {
       )
     }
   })
+
+  if (lastMyMessageCounter) {
+    historyOutMas.splice(lastMyMessageCounter, 0 , (
+      <div
+        key={'lastMyMessage'}
+        id={'lastMyMessage'}
+      >
+  
+      </div>
+    ))
+  }
 
   return (
     !props.opened ?
