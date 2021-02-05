@@ -9,7 +9,6 @@ class Main extends Component {
   refScrollTop = React.createRef();
 
   state = {
-    scrollHeight: this.refScrollTop.current ? this.refScrollTop.current.scrollHeight : 0,
     skipCoeff: 0,
     limit: 10,
     history: [
@@ -121,7 +120,7 @@ class Main extends Component {
     });
 
     if (this.props.opened) {
-      if (this.props.all && this.props.lang === 'RU') {
+      if (this.props.pages.all && this.props.lang === 'RU') {
         this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
   
         this.refScrollTop.current.addEventListener("scroll", () => {
@@ -154,9 +153,6 @@ class Main extends Component {
                     }
                   })
                 });
-
-              // this.refScrollTop.current.scrollTop = this.refScrollTop.current.scrollHeight - this.state.scrollHeight - Number(window.getComputedStyle(this.refScrollTop.current).height.replace('px','')*1.5);
-
             }
           }
         })
@@ -171,7 +167,6 @@ class Main extends Component {
     // }
     if (prevState.skipCoeff !== this.state.skipCoeff ) {
       if (this.state.skipCoeff > 0) {
-        console.log(new Date().getMinutes() + ':' + new Date().getSeconds() + ' [Main.js]:' + 'lastHistoryElem')
         document.getElementById('lastHistoryElem').scrollIntoView({block: "center", behavior: "smooth"})
       }
     }

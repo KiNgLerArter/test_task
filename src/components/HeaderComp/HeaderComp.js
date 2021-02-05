@@ -79,6 +79,7 @@ const headerComp = (props) => (
         className={classes.ResizeButt__Img}
         src={resizeBut}
         alt='resize'
+        onMouseDown={(e) => props.resizeChat(e)}
       />
     </section>
     <section

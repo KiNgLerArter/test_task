@@ -2,7 +2,7 @@ import classes from './MessageComp.module.css';
 
 const messageComp = (props) => (
   <div
-    className={classes.MessageComp + ' flex_flex-start_center'}
+    className={classes.MessageComp + ' width_100 flex_flex-start_center'}
   >
     <section
       className={classes.Message}

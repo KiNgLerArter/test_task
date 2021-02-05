@@ -30,7 +30,6 @@ const mainComp = React.forwardRef((props, ref) => {
   const historyOutMas = [];
   historyInMas.forEach((item, index, arr) => {
     if (index === props.limit && props.coeff > 0) {
-      console.log(new Date().getMinutes() + ':' + new Date().getSeconds() + ' [MainComp.js]:' + 'lastHistoryElem')
       historyOutMas.push(
         <div
           key={'lastHistoryElem'}
@@ -79,10 +78,11 @@ const mainComp = React.forwardRef((props, ref) => {
     !props.opened ?
       <Fragment/>
     :
-      props.all === true && props.lang === 'RU' ?
+      props.pages.all === true && props.lang === 'RU' ?
         <main
-          className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
+          className={classes.MainComp + ' width_100 height_80 flex_column_flex-start_flex-start'}
           ref={refScrollTop}
+          id='mainComp'
         >
           {historyOutMas}
 
@@ -94,7 +94,8 @@ const mainComp = React.forwardRef((props, ref) => {
         </main>
       :
         <main
-          className={classes.MainComp + ' width_100 flex_column_flex-start_flex-start'}
+          className={classes.MainComp + ' width_100 height_80 flex_column_flex-start_flex-start'}
+          id='mainComp'
         ></main>
   )
 });
