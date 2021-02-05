@@ -93,6 +93,40 @@ class Main extends Component {
     });
   }
 
+  fetchHistory = () => {
+    if (this.refScrollTop.current) {
+      if (this.refScrollTop.current.scrollTop === 0) {
+        let limit = this.state.limit;
+        let skip = this.state.skipCoeff * limit;
+        fetch('https://test-task-chat-4tmzp.ondigitalocean.app/api/messages?skip=' + skip + '&limit=' + limit)
+          .then((response) => response.json())
+          .then((result) => {
+            let msDate, hours, minutes;
+            result.forEach(element => {
+              msDate = new Date(Date.parse(element.createdAt));
+              hours = msDate.getHours();
+              minutes = msDate.getMinutes() < 10 ? '0' + msDate.getMinutes() : msDate.getMinutes();
+              element.createdAt = hours + ':' + minutes;
+              element.createdAtReal = msDate;
+              element.lvl = Math.floor(Math.random() * 10 + 1);
+              element.id = this.uuidv4();
+            });
+
+            this.setState((prevState) => {
+              return {
+                ...prevState,
+                skipCoeff: prevState.skipCoeff + 1,
+                history: [
+                  ...result,
+                  ...prevState.history
+                ]
+              }
+            })
+          });
+      }
+    }
+  }
+
   componentDidMount = () => {
 
     socket.on('message', (data) => {
@@ -123,39 +157,7 @@ class Main extends Component {
       if (this.props.pages.all && this.props.lang === 'RU') {
         this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
   
-        this.refScrollTop.current.addEventListener("scroll", () => {
-          if (this.refScrollTop.current) {
-            if (this.refScrollTop.current.scrollTop === 0) {
-              let limit = this.state.limit;
-              let skip = this.state.skipCoeff * limit;
-              fetch('https://test-task-chat-4tmzp.ondigitalocean.app/api/messages?skip=' + skip + '&limit=' + limit)
-                .then((response) => response.json())
-                .then((result) => {
-                  let msDate, hours, minutes;
-                  result.forEach(element => {
-                    msDate = new Date(Date.parse(element.createdAt));
-                    hours = msDate.getHours();
-                    minutes = msDate.getMinutes() < 10 ? '0' + msDate.getMinutes() : msDate.getMinutes();
-                    element.createdAt = hours + ':' + minutes;
-                    element.createdAtReal = msDate;
-                    element.lvl = Math.floor(Math.random() * 10 + 1);
-                    element.id = this.uuidv4();
-                  });
-  
-                  this.setState((prevState) => {
-                    return {
-                      ...prevState,
-                      skipCoeff: prevState.skipCoeff + 1,
-                      history: [
-                        ...result,
-                        ...prevState.history
-                      ]
-                    }
-                  })
-                });
-            }
-          }
-        })
+        this.refScrollTop.current.addEventListener("scroll", this.fetchHistory)
       }
     }
 
@@ -165,6 +167,15 @@ class Main extends Component {
     // if (this.refScrollBottom.current) {
     //   this.refScrollBottom.current.scrollIntoView({block: "center", behavior: "smooth"});
     // }
+
+    if (this.props.opened) {
+      if (this.props.pages.all && this.props.lang === 'RU') {
+        this.refScrollTop.current.removeEventListener("scroll", this.fetchHistory)
+  
+        this.refScrollTop.current.addEventListener("scroll", this.fetchHistory)
+      }
+    }
+
     if (prevState.skipCoeff !== this.state.skipCoeff ) {
       if (this.state.skipCoeff > 0 && document.getElementById('lastHistoryElem')) {
         document.getElementById('lastHistoryElem').scrollIntoView({block: "center", behavior: "auto"})
@@ -180,6 +191,7 @@ class Main extends Component {
     if (this.props.postMessage) {
       this.pushMyMessage();
     }
+
   }
 
   render() {
