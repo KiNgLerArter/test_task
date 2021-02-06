@@ -1,12 +1,15 @@
+import React from 'react';
+
 import classes from './HeaderComp.module.css';
 
 import rightArrow from '../../assets/images/arrows/right.svg';
 import resizeBut from '../../assets/images/buttons/resize.svg';
 import closeBut from '../../assets/images/buttons/close.svg';
 
-const headerComp = (props) => (
+const headerComp = React.forwardRef((props, ref) => (
   <header
     className={classes.Header + ' width_100 Fonts_13_15 flex_between_center'}
+    ref={ref}
   >
     <section
       className={classes.Header__Item + ' ' + classes.Menu + ' height_100 flex_flex-start_center ' + (props.isOpenedMenu ? classes.Menu_Full : null)}
@@ -51,7 +54,9 @@ const headerComp = (props) => (
       </p>
     </section>
     <img
-      className={classes.RightArrow__Img + (props.isOpenedMenu ? ' disp_none' : '')}
+      className={classes.RightArrow__Img + 
+        (props.isOpenedMenu || props.isHeaderBig ? ' disp_none' : '') 
+      }
       src={rightArrow}
       alt='scroll'
       onClick={props.showFullMenu}
@@ -96,6 +101,6 @@ const headerComp = (props) => (
       />
     </section>
   </header>
-)
+))
 
 export default headerComp;

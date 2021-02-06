@@ -17,12 +17,14 @@
   white-space: nowrap; 
   overflow: hidden;
   box-sizing: border-box;
-  color: #23B838;
+  background: linear-gradient(to right, #23B838 80%, rgba(0, 186, 187, 0.1) 95%);
+  background-clip: text;
+  color: transparent;
 }
 
 .Menu_Full {
   white-space: normal;
-  width: 248px;
+  width: 280px;
 }
 
 .Options {
@@ -38,9 +40,6 @@
 
 .Menu__Item_Last {
   margin-right: 0px;
-  background: linear-gradient(to right, #23B838 0%, rgba(0, 186, 187, 0) 70%);
-  background-clip: text;
-  color: transparent;
 }
 
 .Menu__Item_Last_Active {

@@ -17,8 +17,7 @@
 }
 
 .Date {
-  color: #FFF;
-  opacity: 40%;
+  color: rgba(255, 255, 255, 0.4)
 }
 
 .Message__Text {
